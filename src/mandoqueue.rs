@@ -27,8 +27,6 @@ pub enum MandoParam {
 
 #[derive(Clone, PartialEq, Copy)]
 pub enum MandoType {
-    // ShowMainMenu,
-    // HideMainMenu,
     PlayAnimOnce,
     YNYNWalkL,
     YNYNIdleL,
@@ -243,14 +241,6 @@ pub fn operate_mando_queue (
                 println!("shmoop7");
                 info!("shmoop7");
             }
-            // MandoType::ShowMainMenu => {
-            //     println!("shmoop8");
-            //     info!("shmoop8");
-            // }
-            // MandoType::HideMainMenu => {
-            //     println!("shmoop9");
-            //     info!("shmoop9");
-            // }
             MandoType::PlayAnimOnce => {
                 println!("shmoop8");
                 info!("shmoop8");
@@ -333,12 +323,6 @@ pub fn operate_mando_queue (
             MandoType::FillerMando => {
                 commands.filler_mando();
             }
-            // MandoType::ShowMainMenu => {
-            //     commands.show_main_menu();
-            // }
-            // MandoType::HideMainMenu => {
-            //     commands.hide_main_menu();
-            // }
             MandoType::PlayAnimOnce => {
                 commands.play_anim_once(
                     mpe(&mando.mandoParams[0])); // entity

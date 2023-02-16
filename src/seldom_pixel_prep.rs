@@ -45,12 +45,8 @@ impl Trigger for YNYNWalkLTrigger {
     type Param<'w, 's> = (Commands<'w, 's>, Query<'w, 's, Entity, Added<YNYNWalkLComp>>);
 
     fn trigger(&self, _: Entity, added: &Self::Param<'_, '_>) -> bool {
-        // let mut cmds = Self::Param;
-        // let mut cmds = added.0;
-        println!("wcount {}", added.1.is_empty());
+    
         for ent in added.1.iter() {
-            // added.0.entity(ent).remove::<BeWalkComp>();
-            println!("VroomVroom2");
             return true
         }
         return false
@@ -62,12 +58,7 @@ impl Trigger for YNYNIdleLTrigger {
     type Param<'w, 's> = (Commands<'w, 's>, Query<'w, 's, Entity, Added<YNYNIdleLComp>>);
 
     fn trigger(&self, _: Entity, added: &Self::Param<'_, '_>) -> bool {
-        // let mut cmds = Self::Param;
-        // let mut cmds = added.0;
-        println!("count {}", added.1.is_empty());
         for ent in added.1.iter() {
-            // added.0.entity(ent).remove::<BeWalkComp>();
-            println!("VroomVroom");
             return true
         }
         return false
@@ -79,12 +70,7 @@ impl Trigger for YNYNWalkRTrigger {
     type Param<'w, 's> = (Commands<'w, 's>, Query<'w, 's, Entity, Added<YNYNWalkRComp>>);
 
     fn trigger(&self, _: Entity, added: &Self::Param<'_, '_>) -> bool {
-        // let mut cmds = Self::Param;
-        // let mut cmds = added.0;
-        println!("wcount {}", added.1.is_empty());
         for ent in added.1.iter() {
-            // added.0.entity(ent).remove::<BeWalkComp>();
-            println!("VroomVroom2");
             return true
         }
         return false
@@ -96,12 +82,7 @@ impl Trigger for YNYNIdleRTrigger {
     type Param<'w, 's> = (Commands<'w, 's>, Query<'w, 's, Entity, Added<YNYNIdleRComp>>);
 
     fn trigger(&self, _: Entity, added: &Self::Param<'_, '_>) -> bool {
-        // let mut cmds = Self::Param;
-        // let mut cmds = added.0;
-        println!("count {}", added.1.is_empty());
         for ent in added.1.iter() {
-            // added.0.entity(ent).remove::<BeWalkComp>();
-            println!("VroomVroom");
             return true
         }
         return false
