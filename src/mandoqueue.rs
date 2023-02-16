@@ -30,6 +30,11 @@ pub enum MandoType {
     // ShowMainMenu,
     // HideMainMenu,
     PlayAnimOnce,
+    YNYNWalkL,
+    YNYNIdleL,
+    YNYNWalkR,
+    YNYNIdleR,
+    ChangeAnim,
     MoveToLoc3D,
     MoveToLoc2D,
     MoveToLoc2DIv2,
@@ -88,6 +93,13 @@ pub fn fill_mando_queue(
     set.p0().mandos.push_back(vecParams);
 
 
+    vecParams = Vec::new();
+    mando = Mando {mandoType: MandoType::YNYNWalkL, mandoParams: vec![
+        MandoParam::BevyEntity(plyr_entity)   
+    ]};
+    vecParams.push(mando);
+    set.p0().mandos.push_back(vecParams);
+
     // vecParams = Vec::new();
     // mando =  Mando{ mandoType: MandoType::MoveToLoc, mandoParams: vec![
     //     MandoParam::Float(3.50),                             // duration
@@ -109,21 +121,25 @@ pub fn fill_mando_queue(
     set.p0().mandos.push_back(vecParams);
 
     vecParams = Vec::new();
-    mando = Mando {mandoType: MandoType::PauseQueue, mandoParams: vec![]};
-    vecParams.push(mando);
-    set.p0().mandos.push_back(vecParams);
-
-    vecParams = Vec::new();
-    mando = Mando {mandoType: MandoType::ShowUIMessage, mandoParams: vec![
-        // MandoParam::String(create_message(Message1))//Message1.to_owned()))
+    mando = Mando {mandoType: MandoType::YNYNIdleL, mandoParams: vec![
+        MandoParam::BevyEntity(plyr_entity)   
     ]};
     vecParams.push(mando);
     set.p0().mandos.push_back(vecParams);
 
     vecParams = Vec::new();
-    mando = Mando {mandoType: MandoType::AffectTypeWriter, mandoParams: vec![MandoParam::String(Message1.to_owned())]};
-        // MandoParam::BevyEntity(ui_message_percentage_entity),
-    // ]};
+    mando = Mando {mandoType: MandoType::PauseQueue, mandoParams: vec![]};
+    vecParams.push(mando);
+    set.p0().mandos.push_back(vecParams);
+
+    vecParams = Vec::new();
+    mando = Mando {mandoType: MandoType::ShowUIMessage, mandoParams: vec![]};
+    vecParams.push(mando);
+    set.p0().mandos.push_back(vecParams);
+
+    vecParams = Vec::new();
+    mando = Mando {mandoType: MandoType::AffectTypeWriter, mandoParams: vec![
+        MandoParam::String(Message1.to_owned())]};
     vecParams.push(mando);
     set.p0().mandos.push_back(vecParams);
 
@@ -147,9 +163,8 @@ pub fn fill_mando_queue(
     // set.p0().mandos.push_back(vecParams);
 
     vecParams = Vec::new();
-    mando = Mando {mandoType: MandoType::AffectTypeWriter, mandoParams: vec![MandoParam::String(Message2.to_owned())]};
-        // MandoParam::BevyEntity(ui_message_percentage_entity),
-    // ]};
+    mando = Mando {mandoType: MandoType::AffectTypeWriter, mandoParams: vec![
+        MandoParam::String(Message2.to_owned())]};
     vecParams.push(mando);
     set.p0().mandos.push_back(vecParams);
 
@@ -201,8 +216,8 @@ pub fn operate_mando_queue (
                 info!("shmoop9");
             },
             MandoType::MoveToLoc2DIv2 => {
-                println!("shmoop11");
-                info!("shmoop11");
+                println!("shmoop10");
+                info!("shmoop10");
             },
             MandoType::PauseQueue => {
                 println!("shmoop2");
@@ -239,6 +254,26 @@ pub fn operate_mando_queue (
             MandoType::PlayAnimOnce => {
                 println!("shmoop8");
                 info!("shmoop8");
+            }
+            MandoType::YNYNIdleL => {
+                println!("shmoop12");
+                info!("shmoop12");
+            }
+            MandoType::YNYNWalkL => {
+                println!("shmoop13");
+                info!("shmoop13");
+            }
+            MandoType::YNYNIdleR => {
+                println!("shmoop14");
+                info!("shmoop14");
+            }
+            MandoType::YNYNWalkR => {
+                println!("shmoop15");
+                info!("shmoop15");
+            }
+            MandoType::ChangeAnim => {
+                println!("shmoop11");
+                info!("shmoop11");
             }
             }
         }
@@ -307,6 +342,25 @@ pub fn operate_mando_queue (
             MandoType::PlayAnimOnce => {
                 commands.play_anim_once(
                     mpe(&mando.mandoParams[0])); // entity
+            }
+            MandoType::YNYNIdleL => {
+                commands.ynyn_Idle_l(
+                    mpe(&mando.mandoParams[0])); // entity
+            }
+            MandoType::YNYNWalkL => {
+                commands.ynyn_walk_l(
+                    mpe(&mando.mandoParams[0])); // entity
+            }
+            MandoType::YNYNIdleR => {
+                commands.ynyn_walk_r(
+                    mpe(&mando.mandoParams[0])); // entity
+            }
+            MandoType::YNYNWalkR => {
+                commands.ynyn_walk_r(
+                    mpe(&mando.mandoParams[0])); // entity
+            }
+            MandoType::ChangeAnim => {
+                commands.change_anim();
             }
             MandoType::HolderMando => {
                 commands.holder_mando();

@@ -258,6 +258,7 @@ dependencies = [
  "notify",
  "rand",
  "seldom_pixel",
+ "seldom_state",
  "substring",
  "syn",
 ]
@@ -4063,6 +4064,16 @@ source = "git+https://github.com/Seldom-SE/seldom_pixel?rev=2b599a4#2b599a4cf273
 dependencies = [
  "quote",
  "syn",
+]
+
+[[package]]
+name = "seldom_state"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a15cf328249c9ea0a36a2cdbdc09db0a70e1f8eb66382ef5f6edcf2043d180fa"
+dependencies = [
+ "bevy 0.9.1",
+ "seldom_fn_plugin",
 ]
 
 [[package]]

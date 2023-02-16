@@ -3,9 +3,7 @@ use crate::ui::CurrentTextState;
 
 use super::CommandCompleteIndicator;
 
-pub struct PauseQueueCommand {
-
-}
+pub struct PauseQueueCommand;
 
 impl bevy::ecs::system::Command for PauseQueueCommand {
     fn write(self, world: &mut World) {

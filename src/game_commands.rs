@@ -6,6 +6,8 @@ mod move_to_loc_3d;
 mod move_to_loc_2d;
 mod move_to_loc_2d_i;
 mod play_anim_once;
+mod change_anim;
+mod ynyn_anim_state_chgs;
 mod type_writer_effect;
 mod pause_queue;
 
@@ -18,8 +20,10 @@ use self::move_to_loc_3d::MoveToLoc3DCommand;
 use self::move_to_loc_2d::MoveToLoc2DCommand;
 use self::move_to_loc_2d_i::MoveToLoc2DIv2Command;
 use self::play_anim_once::PlayAnimOnceCommand;
+use self::change_anim::ChangeAnim;
 use self::type_writer_effect::AffectTypeWriterCommand;
 use self::pause_queue::PauseQueueCommand;
+use self::ynyn_anim_state_chgs::{YNYNIdleLCMD, YNYNWalkLCMD, YNYNWalkRCMD, YNYNIdleRCMD};
 
 const LEFT_WALL: f32 = -450.;
 const RIGHT_WALL: f32 = 450.;
@@ -68,6 +72,11 @@ pub trait GameCommandsExt {
     fn add_to_mando_queue(&mut self, params: Vec<Mando>);
     fn print_message(&mut self, msg: String);
     fn play_anim_once(&mut self, entity: Entity);
+    fn ynyn_walk_l(&mut self, entity: Entity);
+    fn ynyn_Idle_l(&mut self, entity: Entity);
+    fn ynyn_walk_r(&mut self, entity: Entity);
+    fn ynyn_Idle_r(&mut self, entity: Entity);
+    fn change_anim(&mut self);
     fn move_to_loc_3d(&mut self, delta: u128, elapsedTime: u128, duration: f32, location: Vec3, destination: Vec3, entity: Entity ); 
     fn move_to_loc_2d(&mut self, delta: u128, elapsedTime: u128, duration: f32, location: Vec2, destination: Vec2, entity: Entity ); 
     fn move_to_loc_2d_i(&mut self, delta: u128, elapsedTime: u128, duration: f32, location: IVec2, destination: IVec2, entity: Entity ); 
@@ -91,6 +100,26 @@ impl<'w, 's> GameCommandsExt for Commands<'w, 's> {
 
     fn play_anim_once(&mut self, entity: Entity) {
         self.add(PlayAnimOnceCommand {entity: entity});
+    }
+
+    fn ynyn_walk_l(&mut self, entity: Entity) {
+        self.add(YNYNWalkLCMD {entity: entity});
+    }
+
+    fn ynyn_Idle_l(&mut self, entity: Entity) {
+        self.add(YNYNIdleLCMD {entity: entity});
+    }
+
+    fn ynyn_walk_r(&mut self, entity: Entity) {
+        self.add(YNYNWalkRCMD {entity: entity});
+    }
+
+    fn ynyn_Idle_r(&mut self, entity: Entity) {
+        self.add(YNYNIdleRCMD {entity: entity});
+    }
+
+    fn change_anim(&mut self) {
+        self.add(ChangeAnim);
     }
 
     fn move_to_loc_3d(&mut self, delta: u128, elapsedTime: u128, duration: f32, location: Vec3, destination: Vec3, entity: Entity ) {// mParams: Vec<MandoParam>) {

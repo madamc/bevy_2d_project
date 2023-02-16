@@ -2,9 +2,7 @@ use bevy::{prelude::*, ecs::system::SystemState};
 
 use crate::{ui::UIMessageWindow, game_commands::CommandCompleteIndicator};
 
-pub struct HideMessageUICommand {
-
-}
+pub struct HideMessageUICommand;
 
 impl bevy::ecs::system::Command for HideMessageUICommand {
     fn write(self, world: &mut World) {
