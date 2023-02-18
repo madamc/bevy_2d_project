@@ -46,21 +46,21 @@ const YNYN_Y: i32 = 4;
 pub struct ImageAssets { 
     #[asset(texture_atlas(tile_size_x = 32., tile_size_y = 32., 
             columns = 8, rows = 7, padding_x = 0., padding_y = 0.))]
-    #[asset(path = "art\\momcard1.png")]
+    #[asset(path = "art/momcard1.png")]
     tileset: Handle<TextureAtlas>,
-    #[asset(path = "art\\apartment.png")]
+    #[asset(path = "art/apartment.png")]
     sprite: Handle<Image>,
-    #[asset(path = "art\\mom-Sheet.png")]
+    #[asset(path = "art/mom-Sheet.png")]
     mom_spr: Handle<Image>,
-    #[asset(path = "art\\panel-bb.png")]
+    #[asset(path = "art/panel-bb.png")]
     panel: Handle<Image>,
-    #[asset(path = "art\\panel--button-bb.png")]
+    #[asset(path = "art/panel--button-bb.png")]
     panel_btn: Handle<Image>,
-    #[asset(path = "art\\panel--button-bb-hover.png")]
+    #[asset(path = "art/panel--button-bb-hover.png")]
     panel_btn_hov: Handle<Image>,
-    #[asset(path = "art\\panel--button-bb-clicked.png")]
+    #[asset(path = "art/panel--button-bb-clicked.png")]
     panel_btn_clk: Handle<Image>,
-    #[asset(path = "ui\\pcsenior.kttf")]
+    #[asset(path = "ui/pcsenior.kttf")]
     kfont: Handle<KayakFont>,
 }
 
@@ -296,7 +296,7 @@ fn spawn_sprites(
     commands.spawn(Camera2dBundle::default());
     // mom-Sheet.png
     
-    let runner = sprites.load("art\\mom-walk.png");
+    let runner = sprites.load("art/mom-walk.png");
 
     commands.spawn((
         PxSpriteBundle::<Seld_layer> {
@@ -308,7 +308,7 @@ fn spawn_sprites(
         StateMachine::new((YNYNIdleLState,))
         .trans::<(YNYNIdleLState,)>(YNYNWalkRTrigger, (YNYNWalkLState,))
         .insert_on_enter::<(YNYNWalkLState,)>(AnimBundle {
-            sprite: sprites.load_animated("art\\mom-walk.png", 2),
+            sprite: sprites.load_animated("art/mom-walk.png", 2),
             animation: PxAnimationBundle {
                 duration: PxAnimationDuration::millis_per_animation(2000),
                 on_finish: PxAnimationFinishBehavior::Loop,
@@ -318,7 +318,7 @@ fn spawn_sprites(
         .remove_on_exit::<(YNYNWalkLState,), (PxAnimationBundle, YNYNWalkLComp)>()
         .trans::<(YNYNWalkLState,)>(YNYNIdleLTrigger, (YNYNIdleLState,))
         .insert_on_enter::<(YNYNIdleLState,)>(AnimBundle {
-            sprite: sprites.load_animated("art\\mom-idle.png", 2),
+            sprite: sprites.load_animated("art/mom-idle.png", 2),
             animation: PxAnimationBundle {
                 duration: PxAnimationDuration::millis_per_animation(2000),
                 on_finish: PxAnimationFinishBehavior::Loop,
@@ -328,7 +328,7 @@ fn spawn_sprites(
         .remove_on_exit::<(YNYNIdleLState,), (PxAnimationBundle, YNYNIdleLComp)>()
         .trans::<(YNYNWalkRState,)>(YNYNIdleRTrigger, (YNYNIdleRState,))
         .insert_on_enter::<(YNYNIdleRState,)>(AnimBundle {
-            sprite: sprites.load_animated("art\\mom-idle-r.png", 2),
+            sprite: sprites.load_animated("art/mom-idle-r.png", 2),
             animation: PxAnimationBundle {
                 duration: PxAnimationDuration::millis_per_animation(2000),
                 on_finish: PxAnimationFinishBehavior::Loop,
@@ -338,7 +338,7 @@ fn spawn_sprites(
         .remove_on_exit::<(YNYNIdleRState,), (PxAnimationBundle, YNYNIdleRComp)>()
         .trans::<(YNYNIdleRState,)>(YNYNWalkRTrigger, (YNYNWalkRState,))
         .insert_on_enter::<(YNYNWalkRState,)>(AnimBundle {
-            sprite: sprites.load_animated("art\\mom-walk-r.png", 2),
+            sprite: sprites.load_animated("art/mom-walk-r.png", 2),
             animation: PxAnimationBundle {
                 duration: PxAnimationDuration::millis_per_animation(2000),
                 on_finish: PxAnimationFinishBehavior::Loop,
@@ -356,7 +356,7 @@ fn spawn_sprites(
         .trans::<(YNYNWalkLState,)>(YNYNWalkRTrigger, (YNYNIdleRState,)),)
     ).insert(Person);
 
-    let bg = sprites.load("art\\apartment.png");
+    let bg = sprites.load("art/apartment.png");
     commands.spawn(
         PxSpriteBundle::<Seld_layer> {
             sprite: bg.clone(),
